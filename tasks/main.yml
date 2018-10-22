@@ -22,7 +22,7 @@
 - name: Mount NFS share
   become: yes
   mount:
-    fstype: nfs4
+    fstype: "{{ item.fstype | default(nfs_fstype) }}"
     name: "{{ item.path }}"
     opts: "{{ item.opts | default(nfs_mount_opts) }}"
     src: "{{ item.location }}"
